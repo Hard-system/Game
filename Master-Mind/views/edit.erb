@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style>
+	table, th, td {
+    border: 1px solid black;
+    text-align: center;
+
+}
+.logo{
+  font-size: 30px;
+  float: left;
+  display: block;
+}
+
+.header{
+  text-align: center;
+  color: grey;
+
+}
+
+
+table, th, td {
+    border: 1px solid black;
+}
+
+table {
+	margin-left: 44%;
+}
+th, td{
+	font-size: 25px;
+}
+form{
+	margin-left: 34%;
+	font-size: 25px;
+	margin-top: 3px;
+}
+input{
+	font-size: 25px;
+}
+button{
+	margin-left: 44%;
+	margin-bottom: 2px;
+	font-size: 15px;
+}
+</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Dialog - Animation</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" href="styles.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      }
+    });
+
+    $( "#opener" ).on( "click", function() {
+      $( "#dialog" ).dialog( "open" );
+    });
+  } );
+  function myFunction() {
+  //  location.reload();
+	  location.href = '/edit?new=true';
+	}
+  </script>
+</head>
+<body>
+
+<div id="dialog" title="Game rules">
+  <p>You have to crack the code that is random code between the characters "RGBP". If you have 1:0 means that you have 1 correct letter and on the correct place out of 4, if you have 1:3 means you have 4 correct letters one of them is on the correct place and 3 of them are not!</p>
+</div>
+ <nav>
+	<p style="font-size: 30px; float: left; display: block; width: 150px; color: black; ">MASTERMIND</p>
+</nav><br>
+<button id="opener" style="float: right; display: inline-block; margin-right: 50px; width: 100px; height:80px; font-size: 30px;">Help?</button><br>
+
+
+<button onclick="myFunction()">New Game</button>
+<table>
+  <tr>
+    <th>Turn</th>
+    <th>XXXX</th>
+    <th>Score</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td><%= $g.gettableturnvalue(0) %></td>
+    <td><%= $g.checkresult(0) %></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><%= $g.gettableturnvalue(1) %></td>
+    <td><%= $g.checkresult(1) %></td>
+  </tr>
+ <tr>
+    <td>3</td>
+    <td><%= $g.gettableturnvalue(2) %></td>
+    <td><%= $g.checkresult(2) %></td>
+  </tr>
+   <tr>
+    <td>4</td>
+    <td><%= $g.gettableturnvalue(3) %></td>
+    <td><%= $g.checkresult(3) %></td>
+  </tr>
+   <tr>
+    <td>5</td>
+    <td><%= $g.gettableturnvalue(4) %></td>
+    <td><%= $g.checkresult(4) %></td>
+  </tr>
+   <tr>
+    <td>6</td>
+    <td><%= $g.gettableturnvalue(5) %></td>
+    <td><%= $g.checkresult(5) %></td>
+  </tr>
+   <tr>
+    <td>7</td>
+    <td><%= $g.gettableturnvalue(6) %></td>
+    <td><%= $g.checkresult(6) %></td>
+  </tr>
+   <tr>
+    <td>8</td>
+    <td><%= $g.gettableturnvalue(7) %></td>
+    <td><%= $g.checkresult(7) %></td>
+  </tr>
+   <tr>
+    <td>9</td>
+    <td><%= $g.gettableturnvalue(8) %></td>
+    <td><%= $g.checkresult(8) %></td>
+  </tr>
+   <tr>
+    <td>10</td>
+    <td><%= $g.gettableturnvalue(9) %></td>
+    <td><%= $g.checkresult(9) %></td>
+  </tr>
+   <tr>
+    <td>11</td>
+    <td><%= $g.gettableturnvalue(10) %></td>
+    <td><%= $g.checkresult(10) %></td>
+  </tr>
+   <tr>
+    <td>12</td>
+    <td><%= $g.gettableturnvalue(11) %></td>
+    <td><%= $g.checkresult(11) %></td>
+  </tr>
+</table>
+  <% if $loss %>
+    <h1 style="color:red; text-align: center;">You Lose.</h1>
+	<% end %>
+	<% if !$loss && !$win %>
+	<form action="/edit">
+	Write guess: <input type="text" name="guess" value=" " pattern='^\s*[RGBP]{4}\s*$'>
+	<input type="submit" value="Submit">
+	</form>
+	<% end %>
+	<% if $win %>
+	  <h1 style="color:green; text-align: center;">You Win!</h1>
+	<% end %>
+</body>
+</html>
